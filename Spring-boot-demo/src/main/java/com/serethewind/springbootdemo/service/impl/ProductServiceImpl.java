@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -95,6 +96,22 @@ public class ProductServiceImpl implements ProductService {
 
         return mapToDto(updatedProduct);
     }
+
+    @Override
+    public ProductRequest findByCreatedAt(LocalDateTime date) {
+        boolean isProductExist = productRepository.existsByCreatedAt(date);
+
+
+
+        if (isProductExist){
+            Product product = productRepository.findByCreatedAt(date);
+            return mapToDto(product);
+        }
+        else {
+            return null;
+        }
+    }
+
 
     private ProductRequest mapToDto(Product product){
         ProductRequest productRequest = new ProductRequest();

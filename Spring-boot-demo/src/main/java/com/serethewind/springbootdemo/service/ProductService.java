@@ -4,6 +4,7 @@ import com.serethewind.springbootdemo.dto.ProductRequest;
 import com.serethewind.springbootdemo.entity.Product;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,8 @@ public interface ProductService {
     void deleteSingleProduct(Long id);
 
     ProductRequest updateSingleProduct(Long id, ProductRequest productRequest);
+
+   ProductRequest findByCreatedAt(LocalDateTime date);
 
 
 
